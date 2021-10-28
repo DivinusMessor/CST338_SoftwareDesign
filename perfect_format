@@ -1,0 +1,32 @@
+# -------------------- What do I notice? ---------------------
+# 3 SPACE indents
+# most will be lowercase
+# Brackets on the right under associated line
+# Second word in variable/class name is first letter capital (init[A]rray)
+# spaces after and before parameters, indicated by underscore (_int size_)
+# spaces after and before operators, indicated by underscore (_size_==_0_||_size_>_MAX_SIZE_)
+# space after for loop declaration
+# space before comment text 
+# strings use double quotes 
+
+// constructor for class initArray that takes int size ---
+public initArray( int size )
+{
+   int k;
+
+   // bounds check the size
+   if (size == 0 || size > MAX_SIZE)
+   {
+      undefine();
+      return;
+   }
+
+   // allocate a new string array of size: size
+   data = new String[size];
+   this.size = size;
+   for (k = 0; k < size; k++)
+      data[k] = "default string";
+
+   // set instance variable so we know array is valid
+   defined = true;
+}
