@@ -2,7 +2,8 @@
 # 3 SPACE indents
 # most will be lowercase
 # Brackets on the right under associated line, no lon
-# Second word in variable/class name is first letter capital (init[A]rray)
+# Second word in variable/class name is first letter capital (init[A]rray) 
+   * camelCase
 # spaces after and before parameters, indicated by underscore (_int size_)
 # spaces after and before operators, indicated by underscore (_size_==_0_||_size_>_MAX_SIZE_)
 # space after for loop declaration
@@ -11,13 +12,45 @@
 
 # -------------------- Rules provided by professor --------------------
 # 1) Do not cram code on the left margin, except the function/method headers (public initArray(...), or class headers:
-#     ex) public class Fragment
-#         {
-#           ...
+      ex) public class Fragment
+          {
+            ...
 # 2) indent for/if/else/while/switch bodies
 # 3) Do not indent for no reason, commenting show never be followed by indent 
 # 4) Do not randomly stagger code that should be alligned 
-# 5) do not use excessive indentation or blank lines 
+# 5) do not use excessive indentation or blank lines
+# 6) leave blank space around the operator 
+# 7) do not continue typing on the same line as "{"
+# 8) do not create long lines that will cause wrap around in some editors (use 80 chars max)
+# 9) do not use tabs in this class 
+   * Tabs expand awkwardly in email or on browsers and create problems. 
+   * Always substitute about 3 spaces for every tab character you have in your code, 
+   * or just avoid using the tabs in the first place.
+# 10) one space is insufficient indentation 
+   * Use at least three and no more than five per indentation level. Whatever you use for one level, use for all.
+# 11) Use whole words, not single letters, for variables.
+   * Exceptions are loop counters (n or k are typical) or mathematical or physical constants like e, x and y, 
+   * if this is a math or physics program.
+# 12) Use camelCase for methodNames() or variableNames and UPPER_CASE for constants.
+   * Symbolic constants (values that you designate using the keyword final as not being changeable at run-time) 
+   * use UPPER_CASE with, or without an underscore between words.
+   * Exceptions - We will see exceptions to these rules as we proceed, but they will be very easy to understand. 
+   * For example, class names are capitalized: CityCenter, and the constructors for such classes have the same 
+   * name as the class, CityCenter().
+# 13) Supply comments
+   Comment Requirements
+    When Not to Comment. If variables or statements are self-explanatory, do not add a comment. "assign b to a", or 
+    "print the result" are examples of this type of unnecessary documentation. The more self-documenting code with 
+    well-named variables, the better. Parameters and Returns. Above each method declaration, list the parameters 
+    that the method takes and their meanings. Also include the purpose of the functional return, if any, and 
+    other lasting effect the method has on the caller (client). Explanation of Code Fragments. Above each 
+    several lines (two-to-ten, typically), include a brief comment (one or two lines at most) that explains 
+    what that code fragment does. Individual Line Comments. If a single line is particularly and technically 
+    unusual, add a brief comment on the same line indicating its meaning.
+# 14) After you paste your homework into a text file for final submission, you should review it to be sure your compiler 
+   and text editor have not conspired to add any strange formatting. If they have, you will still be responsible 
+   for those errors. Manually fix the errors in your source code.
+
 
 // constructor for class initArray that takes int size ---
 public initArray( int size )
