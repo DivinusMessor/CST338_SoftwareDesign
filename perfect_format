@@ -1,13 +1,23 @@
-# -------------------- What do I notice? ---------------------
+# -------------------- What do I notice? --------------------
 # 3 SPACE indents
 # most will be lowercase
-# Brackets on the right under associated line
+# Brackets on the right under associated line, no lon
 # Second word in variable/class name is first letter capital (init[A]rray)
 # spaces after and before parameters, indicated by underscore (_int size_)
 # spaces after and before operators, indicated by underscore (_size_==_0_||_size_>_MAX_SIZE_)
 # space after for loop declaration
 # space before comment text 
 # strings use double quotes 
+
+# -------------------- Rules provided by professor --------------------
+# 1) Do not cram code on the left margin, except the function/method headers (public initArray(...), or class headers:
+#     ex) public class Fragment
+#         {
+#           ...
+# 2) indent for/if/else/while/switch bodies
+# 3) Do not indent for no reason, commenting show never be followed by indent 
+# 4) Do not randomly stagger code that should be alligned 
+# 5) do not use excessive indentation or blank lines 
 
 // constructor for class initArray that takes int size ---
 public initArray( int size )
