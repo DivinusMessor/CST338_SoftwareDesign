@@ -27,8 +27,10 @@ class stringManipulation
       // Printing the instructed output
       System.out.println ("Full Name is " + fullName + " and is " 
       + fullNameLen + " characters long");
-      System.out.println ("Full name upper case, " + fullName.toUpperCase());
-      System.out.println ("Full name lower case, " + fullName.toLowerCase());
+      System.out.println ("Full name upper case, " 
+      + fullName.toUpperCase());
+      System.out.println ("Full name lower case, " 
+      + fullName.toLowerCase());
       System.out.println ("");
 
       // Part 2 - does the program need to indicate the parts of the assignment?
