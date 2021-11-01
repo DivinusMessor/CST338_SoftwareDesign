@@ -10,7 +10,6 @@ class stringManipulation
    public static void main( String[] args )
    {
       // Part 1
-      System.out.println ("test line");
       // Creating sc to take user input and requesting info
       // Q: Should I add a new line for user input?
       Scanner scan = new Scanner (System.in);
@@ -20,10 +19,13 @@ class stringManipulation
       System.out.println ("Enter your last name and please "
       + "capitalize first letter ");
       String last = scan.next();
-      // concatenating the two inputs into a variable, fullName
+      // Concatenating the two inputs into a variable
+      // Also getting length of string
       String fullName = first + " " + last;
+      int fullNameLen = fullName.replace( " ", "").length();
       // Printing the instructed output
-      System.out.println ("Full Name is " + fullName);
+      System.out.println ("Full Name is " + fullName + " and is " 
+      + fullNameLen + " characters long");
       System.out.println ("Full name upper case, " + fullName.toUpperCase());
       System.out.println ("Full name lower case, " + fullName.toLowerCase());
       System.out.println ("");
@@ -41,7 +43,7 @@ class stringManipulation
       }
       System.out.println("");
       System.out.println ("How many hours did you should spend on this"
-      + "class this week? Enter a number to 3 decimal places please ");
+      + " class this week? Enter a number to 3 decimal places please ");
       float studyTime = scan.nextFloat();
       DecimalFormat numberFormat = new DecimalFormat(pattern);
       System.out.print ("Study hours rounded to 1 decimal place: ");
