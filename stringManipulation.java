@@ -13,6 +13,7 @@ class stringManipulation
       // Creating sc to take user input and requesting info
       // Q: Should I add a new line for user input?
       // Q: Should the output we put in the .txt file also include the questions that is asked to the user?
+      // Q: Do we need to comment out the output examples in the .txt file?
       Scanner scan = new Scanner (System.in);
       System.out.println ("Enter your first name and please capitalize "
       + "first letter ");
@@ -55,3 +56,4 @@ class stringManipulation
       scan.close();
    }
 }
+
