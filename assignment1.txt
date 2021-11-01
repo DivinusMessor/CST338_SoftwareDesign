@@ -23,11 +23,13 @@ class stringManipulation
       String fullName = first + " " + last;
       // Printing the instructed output
       System.out.println ("Full Name is " + fullName);
-      System.out.println ("Full name upper case, " + fullName.toUpperCase());
-      System.out.println ("Full name lower case, " + fullName.toLowerCase());
+      System.out.println ("Full name upper case, " 
+      + fullName.toUpperCase());
+      System.out.println ("Full name lower case, " 
+      + fullName.toLowerCase());
       System.out.println ("");
 
-      // Part 2 - does the program need to indicate the parts of the assignment?
+      // Part 2
       // Creating the two static functions and format for output
       int MIN_HOURS = 12;
       int MAX_HOURS = 20;
