@@ -5,6 +5,7 @@
 import java.util.Scanner;
 import java.text.DecimalFormat;
 
+// Takes input from user and outputs answers 
 class stringManipulation
 {
    public static void main( String[] args )
@@ -18,11 +19,9 @@ class stringManipulation
       System.out.println ("Enter your last name and please "
       + "capitalize first letter ");
       String last = scan.next();
-      // Concatenating the two inputs into a variable
-      // Also getting length of string
       String fullName = first + " " + last;
       int fullNameLen = fullName.replace( " ", "").length();
-      // Printing the instructed output
+
       System.out.println ("Full Name is " + fullName + " and is " 
       + fullNameLen + " characters long");
       System.out.println ("Full name upper case, " 
@@ -36,8 +35,8 @@ class stringManipulation
       int MIN_HOURS = 12;
       int MAX_HOURS = 20;
       String pattern = "##.#";
-      // Printing range of study hours
-      System.out.print ("Min hours to max study hours are: ");
+
+      System.out.print ("Min to max study hours are: ");
       for (int i = MIN_HOURS; i <= MAX_HOURS; i++)
       {
          System.out.print (i + " ");
