@@ -16,6 +16,8 @@ class ass1
       return "Stringoutput";
    }
 
+   
+
    public static void main ( String[] args ) 
    {
       System.out.println("hi");
