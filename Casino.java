@@ -16,6 +16,7 @@ public class Casino
       int userBet = getBet();
       while (userBet != 0)
       {
+      //System.out.println(userBet);
       // System.out.println(pull()+" ---pull");
       // TESTING ---------------------------
       // System.out.println(result+"----test");
@@ -29,10 +30,10 @@ public class Casino
       // TESTING ---------------------------
       System.out.println("whirrrrrr .... and your pull is ...");
       ThreeString result = pull();
-      int payOut = getPayMultiplier(result);
+      int payOut = getPayMultiplier(result) * userBet;
       display (result, payOut);
       userBet = getBet();
-      System.out.println(userBet);
+      // System.out.println(userBet);
 
       // getPayMultiplier (pull());
       }
