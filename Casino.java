@@ -16,23 +16,15 @@ public class Casino
       int userBet = getBet();
       while (userBet != 0)
       {
-      //System.out.println(userBet);
-      // System.out.println(pull()+" ---pull");
-      // TESTING ---------------------------
-      // System.out.println(result+"----test");
-      // result.string1_change("bar");
-      // result.string2_change("space");
-      // result.string3_change("hats");
-      // result.string3_change("828282322222222222222222222222222222222222222222222222222222222282828");
-      // System.out.println(result.toString());
-      // System.out.println(randString());
-      // ThreeString result = new ThreeString();
-      // TESTING ---------------------------
       System.out.println("whirrrrrr .... and your pull is ...");
       ThreeString result = pull();
       int payOut = getPayMultiplier(result) * userBet;
-      display (result, payOut);
-      userBet = getBet();
+         if (result.saveWinnings(payOut))
+         {
+            display (result, payOut);
+            userBet = getBet();
+         }
+      System.out.println(result.toStringWinnings() + "\nYour total winnings were: $325");
       // System.out.println(userBet);
 
       // getPayMultiplier (pull());
@@ -233,7 +225,12 @@ class ThreeString
    // toStringWinnings() should also be called from the main, where it will print the returned string. It should not print from inside of the method.
    boolean saveWinnings(int winnings)
    {
-      return (winnings < (MAX_PULLS - 1));
+      if (numPulls < 40)
+      {
+         numPulls += 1;
+         return true;
+      }
+      return false;
    }
 
    String toStringWinnings()
