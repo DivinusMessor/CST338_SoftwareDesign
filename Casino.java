@@ -2,7 +2,12 @@
 // CST 338 - Software Design 
 // Assignment 2 - Casino
 
+// Q: How do we store getBet() into a variable to get the result and multiply it with WinningMultiplier()
+// Q: that variable is how we add it to the array and use numPull to index what position the array is in
+
+
 import java.util.*;
+
 
 public class Casino
 {
@@ -10,8 +15,6 @@ public class Casino
    {
       while (getBet() != 0)
       {
-      //getBet();
-      
       // System.out.println(pull()+" ---pull");
       // TESTING ---------------------------
       // System.out.println(result+"----test");
@@ -24,7 +27,11 @@ public class Casino
       // ThreeString result = new ThreeString();
       // TESTING ---------------------------
       System.out.println("whirrrrrr .... and your pull is ...");
-      getPayMultiplier (pull());
+      ThreeString result = pull();
+      int payOut = getPayMultiplier(result);
+      display (result, payOut);
+
+      // getPayMultiplier (pull());
       }
       
    }
@@ -105,34 +112,47 @@ public class Casino
       // System.out.println( pull_slots[1] + "---2test");
       // System.out.println( pull_slots[2] + "---3test");
       //System.out.println(("cherries".equals(pull_slots[1])) + "-----equaltest");
-      System.out.println(thePull.toString());
+      // System.out.println(thePull.toString());
       
       //  cherries  [not cherries]  [any] pays 5 × bet (5 times the bet)
       if (pull_slots[0].equals("cherries") && !"cherries".equals(pull_slots[1]))
       {
-         System.out.println("payout was 5x");
+         return 5;
       }
       //  cherries  cherries  [not cherries] pays 15 × bet 
       else if (pull_slots[0].equals("cherries") && pull_slots[1].equals("cherries") && !pull_slots[2].equals("cherries"))
       {
-         System.out.println("payout was 15x");
+         return 15;
       }
       //  cherries  cherries  cherries pays 30 × bet 
       else if (pull_slots[0].equals("cherries") && pull_slots[1].equals("cherries") && pull_slots[2].equals("cherries"))
       {
-         System.out.println("payout was 30x");
+         return 30;
       }
       //  BAR  BAR  BARpays 50 × bet 
       else if (pull_slots[0].equals("BAR") && pull_slots[1].equals("BAR") && pull_slots[2].equals("BAR"))
       {
-         System.out.println("payout was 50x");
+         return 50;
       }
       //  7  7  7 pays 100 × bet 
       else if (pull_slots[0].equals("7") && pull_slots[1].equals("7") && pull_slots[2].equals("7"))
       {
-         System.out.println("payout was 100x");
+         return 100;
       }
    return 0;
+   }
+
+   static void display (ThreeString thePull, int winnings )
+   {
+      System.out.println(thePull.toString());
+      if (winnings > 0)
+      {
+         System.out.println("congratulations, you win: " + winnings);
+      }
+      else
+      {
+         System.out.println("sorry, you lose.");
+      }
    }
 }
 
