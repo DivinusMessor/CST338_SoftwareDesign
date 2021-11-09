@@ -7,6 +7,7 @@
 
 
 import java.util.*;
+import java.util.concurrent.ThreadPoolExecutor;
 
 
 public class Casino
@@ -14,22 +15,25 @@ public class Casino
    public static void main(String[] args) 
    {
       int userBet = getBet();
+      int totalWinningsEarned = 0;
+      ThreeString result = new ThreeString();
       while (userBet != 0)
       {
       System.out.println("whirrrrrr .... and your pull is ...");
-      ThreeString result = pull();
+      result = pull();
       int payOut = getPayMultiplier(result) * userBet;
          if (result.saveWinnings(payOut))
          {
+            totalWinningsEarned += payOut;
             display (result, payOut);
             userBet = getBet();
          }
-      System.out.println(result.toStringWinnings() + "\nYour total winnings were: $325");
-      // System.out.println(userBet);
-
-      // getPayMultiplier (pull());
+         else
+         {
+            userBet = 0;
+         }
       }
-      
+      System.out.println(result.toStringWinnings() + "\nYour total winnings were: $" + totalWinningsEarned);
    }
 
    public static int getBet()
@@ -42,7 +46,6 @@ public class Casino
          {
             if (user_bet == 0)
             {
-               System.out.println("UserQuit");
                checkBet = true;
             }
             else if (user_bet >= 1 && user_bet <= 100)
@@ -72,8 +75,6 @@ public class Casino
    {
       int ranNum = (int)(Math.random()*1000);
       String slot = "";
-      // space 1/2  (50%)
-      // System.out.println(ranNum+" rannum");
       if (ranNum > 500)
       {
          slot = "space";
@@ -97,20 +98,7 @@ public class Casino
 
    static int getPayMultiplier (ThreeString thePull)
    {
-      // System.out.println(thePull.toString());
-      // slot_pull = thePull.toString();
-      // thePull.string1_change("7");
-      // thePull.string2_change("7");
-      // thePull.string3_change("7");
       String [] pull_slots = thePull.toString().split("  ");
-      // System.out.println( Arrays.toString(pull_slots) + "---pulltestlength");
-      // System.out.println( pull_slots[0] + "---1test");
-      // System.out.println( pull_slots[1] + "---2test");
-      // System.out.println( pull_slots[2] + "---3test");
-      //System.out.println(("cherries".equals(pull_slots[1])) + "-----equaltest");
-      // System.out.println(thePull.toString());
-      
-      //  cherries  [not cherries]  [any] pays 5 × bet (5 times the bet)
       if (pull_slots[0].equals("cherries") && !"cherries".equals(pull_slots[1]))
       {
          return 5;
@@ -138,7 +126,7 @@ public class Casino
    return 0;
    }
 
-   static void display (ThreeString thePull, int winnings )
+   public static void display (ThreeString thePull, int winnings )
    {
       System.out.println(thePull.toString());
       if (winnings > 0)
@@ -160,7 +148,7 @@ class ThreeString
    private String string1;
    private String string2;
    private String string3;
-   private static int [] pullWinnings = new int[MAX_LEN]; 
+   private static int [] pullWinnings = new int[MAX_PULLS]; 
    private static int numPulls;
 
    ThreeString()
@@ -187,29 +175,32 @@ class ThreeString
    // private String return_string1(){
    //    return string1;
    // }
-   String string1_change(String str)
+   boolean string1_change(String str)
    {
       if (validString( str ))
       {
          string1 = str;
+         return true;
       }
-      return string1;
+      return false;
    }
-   String string2_change(String str)
+   boolean string2_change(String str)
    {
       if (validString( str ))
       {
          string2 = str;
+         return true;
       }
-      return string2;
+      return false;
    }
-   String string3_change(String str)
+   boolean string3_change(String str)
    {
       if (validString( str ))
       {
          string3 = str;
+         return true;
       }
-      return string3;
+      return false;
    }
 
    // Returns 
@@ -227,6 +218,8 @@ class ThreeString
    {
       if (numPulls < 40)
       {
+         System.out.println(numPulls + "pullnumbs check");
+         pullWinnings[numPulls] = winnings;
          numPulls += 1;
          return true;
       }
@@ -235,15 +228,15 @@ class ThreeString
 
    String toStringWinnings()
    {
-      int pullWin = 0;
-      String pullWinningsString;
-
-      for (int i = 0; i<numPulls; i++)
+      String pullWinningsString = "";
+      int temp = 0;
+      for (int n = 0; n<numPulls; n++)
       {
-         pullWinnings[i] = pullWin;
+         temp = pullWinnings[n];
+         pullWinningsString += String.valueOf(temp) + " ";
       }
-      pullWinningsString = Integer.toString(pullWin);
       return pullWinningsString;
+      
    }
 }
 
