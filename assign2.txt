@@ -1,0 +1,99 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------- Sample Run ---------------------------* 
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ space  cherries  space
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 55
+whirrrrrr .... and your pull is ...
+ space  cherries  cherries
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 555
+How much would you like to bet (1 - 100) or 0 to quit? 555
+How much would you like to bet (1 - 100) or 0 to quit? -2
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ space  space  7
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ 7  space  space
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ space  cherries  space
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ BAR  space  BAR
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ BAR  7  cherries
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ space  cherries  space
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ space  space  cherries
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ space  space  space
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ space  space  BAR
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ 7  cherries  space
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ BAR  space  space
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ space  BAR  space
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ cherries  space  space
+congratulations, you win: 25
+
+How much would you like to bet (1 - 100) or 0 to quit? 0
+Thanks for playing at the Casino!
+Your individual winnings were:
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 
+Your total winnings were: $25
+-------------------------------------------------------- */
