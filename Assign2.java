@@ -4,13 +4,14 @@
 
 import java.util.*;
 
-public class Casino
+public class Assig2
 {
-   public static void main(String[] args)
+   public static void main( String[] args )
    {
       int userBet = getBet();
       int totalWinningsEarned = 0;
       ThreeString result = new ThreeString();
+      
       while (userBet != 0)
       {
       System.out.println("whirrrrrr .... and your pull is ...");
@@ -61,7 +62,7 @@ public class Casino
          return user_bet;
       }
 
-   static ThreeString pull()
+   public static ThreeString pull()
    {
       ThreeString gamble = new ThreeString();
       gamble.string1_change(randString());
@@ -97,7 +98,7 @@ public class Casino
       return slot;
    }
 
-   static int getPayMultiplier (ThreeString thePull)
+   static int getPayMultiplier (ThreeString thePull )
    {
       String [] pull_slots = thePull.toString().split("  ");
       if (pull_slots[0].equals("cherries") && 
@@ -168,12 +169,12 @@ class ThreeString
 
    }
 
-   private boolean validString( String str )
+   private boolean validString (String str )
    {
       return (( str != null && str.length() <= MAX_LEN ));
    }
 
-   boolean string1_change(String str)
+   boolean string1_change (String str )
    {
       if (validString( str ))
       {
@@ -182,7 +183,8 @@ class ThreeString
       }
       return false;
    }
-   boolean string2_change(String str)
+
+   boolean string2_change (String str )
    {
       if (validString( str ))
       {
@@ -191,7 +193,8 @@ class ThreeString
       }
       return false;
    }
-   boolean string3_change(String str)
+
+   boolean string3_change (String str )
    {
       if (validString( str ))
       {
@@ -207,7 +210,7 @@ class ThreeString
       return combinedString;
    }
 
-   boolean saveWinnings(int winnings)
+   boolean saveWinnings (int winnings )
    {
       if (numPulls < 40)
       {
