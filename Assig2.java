@@ -19,11 +19,11 @@ public class Assig2
 
       while (userBet != 0)
       {
-      System.out.println("whirrrrrr .... and your pull is ...");
       result = pull();
       int payOut = getPayMultiplier(result) * userBet;
          if (result.saveWinnings(payOut))
          {
+            System.out.println("whirrrrrr .... and your pull is ...");
             totalWinningsEarned += payOut;
             display (result, payOut);
             System.out.println();
@@ -87,7 +87,7 @@ public class Assig2
       // space 1/2  (50%)
       if (ranNum > 500)
       {
-         slot = "space";
+         slot = "(space)";
       }
       // cherries 1/4  (25%)
       else if (ranNum > 250)
@@ -190,7 +190,7 @@ class ThreeString
    }
 
    // Mutators and Accessors
-   boolean string1_change (String str )
+   public boolean string1_change (String str )
    {
       if (validString( str ))
       {
@@ -200,7 +200,7 @@ class ThreeString
       return false;
    }
 
-   boolean string2_change (String str )
+   public boolean string2_change (String str )
    {
       if (validString( str ))
       {
@@ -210,7 +210,7 @@ class ThreeString
       return false;
    }
 
-   boolean string3_change (String str )
+   public boolean string3_change (String str )
    {
       if (validString( str ))
       {
@@ -247,7 +247,7 @@ class ThreeString
       for (int n = 0; n<numPulls; n++)
       {
          temp = pullWinnings[n];
-         pullWinningsString += String.valueOf(temp) + " ";
+         pullWinningsString += Integer.toString(temp) + " ";
       }
       return pullWinningsString;
 

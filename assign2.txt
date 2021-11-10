@@ -19,11 +19,11 @@ public class Assig2
 
       while (userBet != 0)
       {
-      System.out.println("whirrrrrr .... and your pull is ...");
       result = pull();
       int payOut = getPayMultiplier(result) * userBet;
          if (result.saveWinnings(payOut))
          {
+            System.out.println("whirrrrrr .... and your pull is ...");
             totalWinningsEarned += payOut;
             display (result, payOut);
             System.out.println();
@@ -87,7 +87,7 @@ public class Assig2
       // space 1/2  (50%)
       if (ranNum > 500)
       {
-         slot = "space";
+         slot = "(space)";
       }
       // cherries 1/4  (25%)
       else if (ranNum > 250)
@@ -190,7 +190,7 @@ class ThreeString
    }
 
    // Mutators and Accessors
-   boolean string1_change (String str )
+   public boolean string1_change (String str )
    {
       if (validString( str ))
       {
@@ -200,7 +200,7 @@ class ThreeString
       return false;
    }
 
-   boolean string2_change (String str )
+   public boolean string2_change (String str )
    {
       if (validString( str ))
       {
@@ -210,7 +210,7 @@ class ThreeString
       return false;
    }
 
-   boolean string3_change (String str )
+   public boolean string3_change (String str )
    {
       if (validString( str ))
       {
@@ -247,7 +247,7 @@ class ThreeString
       for (int n = 0; n<numPulls; n++)
       {
          temp = pullWinnings[n];
-         pullWinningsString += String.valueOf(temp) + " ";
+         pullWinningsString += Integer.toString(temp) + " ";
       }
       return pullWinningsString;
 
@@ -257,12 +257,12 @@ class ThreeString
 /* -------------------- Sample Run ---------------------------* 
 How much would you like to bet (1 - 100) or 0 to quit? 5
 whirrrrrr .... and your pull is ...
- space  cherries  space
-sorry, you lose.
+ cherries  BAR  (space)
+congratulations, you win: 25
 
 How much would you like to bet (1 - 100) or 0 to quit? 55
 whirrrrrr .... and your pull is ...
- space  cherries  cherries
+ (space)  cherries  (space)
 sorry, you lose.
 
 How much would you like to bet (1 - 100) or 0 to quit? 555
@@ -270,72 +270,78 @@ How much would you like to bet (1 - 100) or 0 to quit? 555
 How much would you like to bet (1 - 100) or 0 to quit? -2
 How much would you like to bet (1 - 100) or 0 to quit? 5
 whirrrrrr .... and your pull is ...
- space  space  7
+ (space)  (space)  cherries
 sorry, you lose.
 
 How much would you like to bet (1 - 100) or 0 to quit? 5
 whirrrrrr .... and your pull is ...
- 7  space  space
+ (space)  (space)  7
 sorry, you lose.
 
 How much would you like to bet (1 - 100) or 0 to quit? 5
 whirrrrrr .... and your pull is ...
- space  cherries  space
-sorry, you lose.
-
-How much would you like to bet (1 - 100) or 0 to quit? 5
-whirrrrrr .... and your pull is ...
- BAR  space  BAR
-sorry, you lose.
-
-How much would you like to bet (1 - 100) or 0 to quit? 5
-whirrrrrr .... and your pull is ...
- BAR  7  cherries
-sorry, you lose.
-
-How much would you like to bet (1 - 100) or 0 to quit? 5
-whirrrrrr .... and your pull is ...
- space  cherries  space
-sorry, you lose.
-
-How much would you like to bet (1 - 100) or 0 to quit? 5
-whirrrrrr .... and your pull is ...
- space  space  cherries
-sorry, you lose.
-
-How much would you like to bet (1 - 100) or 0 to quit? 5
-whirrrrrr .... and your pull is ...
- space  space  space
-sorry, you lose.
-
-How much would you like to bet (1 - 100) or 0 to quit? 5
-whirrrrrr .... and your pull is ...
- space  space  BAR
-sorry, you lose.
-
-How much would you like to bet (1 - 100) or 0 to quit? 5
-whirrrrrr .... and your pull is ...
- 7  cherries  space
-sorry, you lose.
-
-How much would you like to bet (1 - 100) or 0 to quit? 5
-whirrrrrr .... and your pull is ...
- BAR  space  space
-sorry, you lose.
-
-How much would you like to bet (1 - 100) or 0 to quit? 5
-whirrrrrr .... and your pull is ...
- space  BAR  space
-sorry, you lose.
-
-How much would you like to bet (1 - 100) or 0 to quit? 5
-whirrrrrr .... and your pull is ...
- cherries  space  space
+ cherries  (space)  cherries
 congratulations, you win: 25
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ cherries  (space)  BAR
+congratulations, you win: 25
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ (space)  (space)  BAR
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ (space)  cherries  cherries
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ cherries  (space)  (space)
+congratulations, you win: 25
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ (space)  BAR  (space)
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ cherries  cherries  BAR
+congratulations, you win: 75
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ 7  cherries  (space)
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ (space)  (space)  (space)
+sorry, you lose.
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ cherries  (space)  BAR
+congratulations, you win: 25
+
+How much would you like to bet (1 - 100) or 0 to quit? 5
+whirrrrrr .... and your pull is ...
+ (space)  (space)  (space)
+sorry, you lose.
 
 How much would you like to bet (1 - 100) or 0 to quit? 0
 Thanks for playing at the Casino!
 Your individual winnings were:
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 25 
-Your total winnings were: $25
+25 0 0 0 25 25 0 0 25 0 75 0 0 25 0 
+Your total winningswere: $200
+
+How much would you like to bet (1 - 100) or 0 to quit? 41
+Thanks for playing at the Casino!
+Your individual winnings were:
+0 0 45 0 0 0 0 0 45 50 0 60 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 140 0 150 0 0 15 170 0 0 0 0 0 0 
+Your total winningswere: $675
 -------------------------------------------------------- */
