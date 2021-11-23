@@ -3,13 +3,29 @@ import java.sql.Array;
 import java.util.Arrays;
 
 public class Assig4 {
+    
     public static void main(String[] args) {
         
-        BarcodeImage dirtyImg = new BarcodeImage();
-        // TODO: Set Borders & then set Values Randomly inside dirtyImg
-        String[] temp = new String[] {"Hello", "World"};
-        BarcodeImage toTest = new BarcodeImage(temp);
-        toTest.displayToConsole();
+        // BarcodeImage dirtyImg = new BarcodeImage(); // Standard Image that isn't bottom L centered
+        // String[] temp = new String[] {"Hello", "World", "World"};
+        // BarcodeImage toTest = new BarcodeImage(temp);
+        // BarcodeImage empty = new BarcodeImage();
+        // System.out.println("The Barcode Image: ");
+        // toTest.displayToConsole();
+        // DataMatrix Tester = new DataMatrix(toTest);
+        // Tester.translateImageToText();
+        // Tester.displayTextToConsole();
+        // empty.displayToConsole();
+        // System.out.println();
+        // DataMatrix tempDM = new DataMatrix(toTest);
+        // System.out.print("HEIGHT: " + tempDM.getActualHeight());
+        // System.out.print(" WIDTH: " + tempDM.getActualWidth());
+        // // System.out.println("New Copy: ");
+        // // tempDM.displayImageToConsole();
+        // tempDM.displayTextToConsole();
+        // tempDM.generateImageFromText();
+        // tempDM.displayImageToConsole();
+
 
         String[] sImageIn =
         {
@@ -31,12 +47,43 @@ public class Assig4 {
          "                                               "
 
       };
+    //     String[] sImageIn =
+    //     {
+    //      "                                               ",
+    //      "                                               ",
+    //      "                                               ",
+    //      "                                               ",
+    //      "                                               ",  
+    //      " * * * * * * * * * * * * * * * * * * * * *     ",
+    //      " *                                       *     ",
+    //      " ****** **** ****** ******* ** *** *****       ",
+    //      " *     *    ******************************     ",
+    //      " * **    * *        **  *    * * *   *         ",
+    //      " *   *    *  *****    *   * *   *  **  ***     ",
+    //      " *  **     * *** **   **  *    **  ***  *      ",
+    //      " ***  * **   **  *   ****    *  *  ** * **     ",
+    //      " *****  ***  *  * *   ** ** **  *   * *        ",
+    //      " *****************************************     ",
+    //      "                                               "
+
+    //   };
+      
       BarcodeImage bc = new BarcodeImage(sImageIn);
-    //   DataMatrix dm = new DataMatrix(bc); 
+      DataMatrix dm = new DataMatrix(bc); 
     //   System.out.println("SCAN " + dm.scan(bc));
-      bc.displayToConsole();
+      System.out.print("OLD: ");
+      dm.displayImageToConsole();
+      dm.cleanImage();
+      System.out.println("NEW: ");
+      dm.displayImageToConsole();
+
+    //   DataMatrix hello = new DataMatrix("CSUMB");
+    //   hello.displayTextToConsole();
+    //   hello.generateImageFromText();
+    //   hello.displayImageToConsole();
     }
 }
+
 //This class will realize all the essential data and methods associated with a 2D pattern, 
 //thought of conceptually as an image of a square or rectangular bar code. 
 class BarcodeImage implements Cloneable {
@@ -70,56 +117,35 @@ class BarcodeImage implements Cloneable {
             }
         }
 
-        // Check if we're w/in the size limits of MAX_WIDTH
+        // Check if we're w/in the size limits of MAX_WIDTH. Assumes input strings will all be the same length.
         if (checkSize(strData)) {
-            // Code for Barcode generation
-            int widthTracker = 1; // Keeps track of our actual width AKA X
-            for (String each : strData) {
-                char[] strChars = each.toCharArray();
-                for (int i = 0; i < strChars.length; i++) {
-                    // Gets the binary form of each char w leading 0s
-                    String toPrint = Integer.toBinaryString((int) strChars[i]).toString();
-                    String leadingZero = String.format("%8s", toPrint).replace(' ', '0');
-                    // Using the binary string, fill each index w correct values
-                    for (int Y = 1; Y <= leadingZero.length(); Y++) {
-                        if (leadingZero.charAt(Y - 1) == '1') {
-                            imageData[Y][widthTracker] = true;
-                        } else {
-                            imageData[Y][widthTracker] = false;
-                        }
-                    }
-                    widthTracker++;
-                }
-            }
+            int yTracker = 29;
+            int xTracker = 0;
             
-            widthTracker++;
-            // Create the closed/open borderlines
-            // Makes the LEFT & RIGHT
-            for (int Y = 0; Y < 10; Y++) { 
-                imageData[Y][0] = true;
-                if (Y % 2 != 0) { // Alternating pattern
-                    imageData[Y][widthTracker - 1] = true;
+            for (int oldY = strData.length - 1; oldY >= 0; oldY--) { // Iterates through the strData arr in reverse.
+                for (int oldX = 0; oldX < strData[oldY].length() - 1; oldX++) { // Iterates through the individual strings of strArr
+                    if (strData[oldY].charAt(oldX) == '*') {
+                        this.imageData[yTracker][xTracker] = true;
+                    } else {
+                        this.imageData[yTracker][xTracker] = false;
+                    }
+                    xTracker++;
                 }
-            }
-            imageData[0][widthTracker - 1] = true; // Adds the single missing * at the top right
-            // Makes the TOP & BOTTOM
-            for (int X = 0; X < widthTracker; X++) { 
-                imageData[9][X] = true;
-                if (X % 2 == 0) { // Alternating pattern
-                    imageData[0][X] = true;
-                }
+                xTracker = 0;
+                yTracker--;
             }
         }
     }
 
     /**
-     * getPixel: 
+     * getPixel: Accessor for each bit in the image
      * 
      * @param row
      * @param col
      * @return
      */
     public boolean getPixel(int row, int col) {
+        //checks if values of row & col are valid
         if (row >= 0 && row < MAX_HEIGHT && col >= 0 && col < MAX_WIDTH) {
             return this.imageData[row][col];
         }
@@ -127,7 +153,7 @@ class BarcodeImage implements Cloneable {
     }
     
     /**
-     * setPixel:
+     * setPixel: mutator for each bit in the image
      * 
      * @param row
      * @param col
@@ -135,39 +161,58 @@ class BarcodeImage implements Cloneable {
      * @return
      */
     public boolean setPixel(int row, int col, boolean value) {
+        //checks if row & col are valid
         if (row >= 0 && row < MAX_HEIGHT && col >= 0 && col < MAX_WIDTH) {
             return this.imageData[row][col] = value;
         }
         return false;
     }
     
+    /**
+     * checkSize: checks the incoming data for every conceivable
+     * size or null error.
+     * @param data
+     * @return
+     */
     private boolean checkSize(String[] data) {
-        int sizeCheck = 0;
-        for (String each : data) {
-            sizeCheck += each.length();
+        if (data == null) {
+            return false;
         }
-
-        return (data == null || sizeCheck > MAX_WIDTH) ? false : true;
+        for (String each : data) {
+            // Ensures each incoming string will be at MAX 64 long.
+            if (each.length() > MAX_WIDTH) {
+                return false;
+            }
+        }
+        return true;
     }
     
+     //displays barcode image to console
     public void displayToConsole() {
         // Prints by going down each row one at a time
-        for (int Y = 0; Y < 10; Y++) {
+        for (int Y = 0; Y < MAX_HEIGHT; Y++) {
             for (int X = 0; X < MAX_WIDTH; X++) {
                 if(this.imageData[Y][X] == true){
+                    // System.out.print(X);
                     System.out.print("X");
                     // System.out.print("*");
                 } else {
-                    System.out.print(" ");
+                    // System.out.print(" ");
+                    System.out.print("_");
                 }
             }
             System.out.println();
         }
     }
 
-    public Object clone() {
+    /**
+     * clone: clones the barcode image
+     *
+     * @return
+     */
+    public Object clone() throws CloneNotSupportedException {
         // Blank image
-        BarcodeImage toClone = new BarcodeImage(); 
+        BarcodeImage toClone = new BarcodeImage();
         // Clones by using MAX values to loop
         for (int Y = 0; Y < MAX_HEIGHT; Y++) {
             for (int X = 0; X < MAX_WIDTH; X++) {
@@ -177,7 +222,8 @@ class BarcodeImage implements Cloneable {
         return toClone;
     }
 }
-
+//The class that will contain both a BarcodeImage member object and a 
+//text String member that represents the message encoded in the embedded image.
 class DataMatrix implements BarcodeIO {
     //data
     public static final char BLACK_CHAR = '*';
@@ -190,105 +236,239 @@ class DataMatrix implements BarcodeIO {
 
     // Default Constructor
     public DataMatrix() {
-
         this.image = new BarcodeImage();
         this.text = "undefined";
         this.actualHeight = 0;
         this.actualWidth = 0;
     }
-
+    //Explicit Constructors
     public DataMatrix(BarcodeImage image) {
+        //sets image
         this.image = new BarcodeImage();
+
+        //calls scan() to avoid duplication of code
         scan(image);
     }
 
     public DataMatrix(String text) {
+        //sets text
         this.text = text;
+        //calls readText() to avoid duplication of code
         this.readText(text);
-    }
 
+    }
+    /**
+     * readText: mutator for text
+     *
+     * @param text
+     * @return 
+     */
     public boolean readText(String text) {
         this.text = text;
         return true;
     }
 
+    /**
+     *scan: mutator for image
+     *
+     * @param image
+     * @return 
+     */
     public boolean scan(BarcodeImage image) {
-        try{
-            this.image = (BarcodeImage)image.clone();
-            this.cleanImage();
-            //this.actualWidth = this.computeSignalWidth();
-            //this.actualHeight = this.computeSignalHeight();
+        //calls clone() and requires the catch of a 
+        //CloneNotSupportedException by using try/catch block
+        try {
+            this.image = (BarcodeImage) image.clone();
+            // this.cleanImage();
+            this.actualWidth = this.computeSignalWidth();
+            this.actualHeight = this.computeSignalHeight();
             return true;
-        }
-        catch(CloneNotSupportedException e)
-        {
+        } catch (CloneNotSupportedException e) {
             return false;
         }
     }
 
+    /**
+     * getActualWidth : accessor for actualWidth
+     * @return
+     */
     public int getActualWidth() {
         return this.actualWidth;
     }
 
+    /**
+     * getActualHeight: accessor for actualHeight
+     * @return
+     */
     public int getActualHeight() {
         return this.actualHeight;
     }
 
-
+    /**
+     * computeSignalWidth: uses the "spine" to determine size of width
+     * @return
+     */
     private int computeSignalWidth() {
         int widthTracker = 0;
-        for (int i = 1; i < BarcodeImage.MAX_WIDTH; i++){
-            if(this.image.getPixel(1, i)){
+        int rowTracker = 29;
+        // Start on the Last Row & count the closed borderline
+        for (int X = 0; X < BarcodeImage.MAX_WIDTH; X++) {
+            if (this.image.getPixel(rowTracker, X)) {
                 widthTracker++;
             }
         }
-        return widthTracker;
+        return widthTracker - 2;
     }
 
+    /**
+     * computeSignalHeight: uses the "spine" to determine size of height
+     * @return
+     */
     private int computeSignalHeight() {
         int heightTracker = 0;
-        
+        for (int Y = 0; Y < BarcodeImage.MAX_HEIGHT; Y++) {
+            if (this.image.getPixel(Y, 0)) {
+                heightTracker++;
+            }
+        }
+        return heightTracker - 2;
     }
 
+    /**
+     * generateImageFromText: 
+     *
+     */
     public boolean generateImageFromText() {
-        
+        if (this.text.length() < BarcodeImage.MAX_WIDTH - 2) {
+            BarcodeImage newImage = new BarcodeImage(); // Fresh image
+            char[] textChars = this.text.toCharArray(); // Turn text to chars
+            int widthTracker = 1;
+            // Iterates through each Char in the String
+            for (int i = 0; i < textChars.length; i++) {
+                // Create a binary string representation of our char "01100110"
+                String toPrint = Integer.toBinaryString((int) textChars[i]).toString();
+                String leadingZero = String.format("%8s", toPrint).replace(' ', '0');
+                // Use that binary string to create a COL of *s
+                for (int Y = 0; Y < leadingZero.length(); Y++) {
+                    if (leadingZero.charAt(Y) == '1') {
+                        newImage.setPixel(Y + 21, widthTracker, true);
+                    }
+                }
+                widthTracker++;
+            }
+
+            widthTracker++; // Makes the LEFT & RIGHT Borderlines
+            for (int Y = 20; Y < BarcodeImage.MAX_HEIGHT; Y++) {
+                newImage.setPixel(Y, 0, true); // Solid Line
+                if (Y % 2 != 0) { // Alternating pattern       
+                    newImage.setPixel(Y, widthTracker - 1, true);
+                }
+            }
+            // Makes the TOP & BOTTOM Borderlines
+            for (int X = 0; X < widthTracker; X++) {
+                newImage.setPixel(29, X, true); // Solid Line
+                if (X % 2 == 0) { // Alternating pattern
+                    newImage.setPixel(BarcodeImage.MAX_HEIGHT-10, X, true);
+                }
+            }
+            this.image = newImage;
+            return true;
+        } else {
+            // TODO: This checks if the text is 63 chars long (63 is the max cause of the borders) and if its longer then it won't generate anything. Check if this is the proper behavior.
+            return false;
+        }
     }
 
     public boolean translateImageToText() {
+        /*    
+        for (int i = 0; i < getActualWidth(); i ++)
+        {
+            for (int j = 0; j < getAtcutalHeight(); j ++)
+            {
+                newText[i] = newText[i] + (String) this.image.getPixel(j,i);
+            }
+        }
         
+        if (newText[getActualWidth() - 1] != null)
+            return true;
+        return false;*/
+        String [] newText = new String [computeSignalWidth() + 1];
+        int currentRow;
+        int currentCol;
+
+        for (currentCol = 1; currentCol < computeSignalWidth()+1; currentCol++)
+        {
+            for (currentRow = 29 - computeSignalHeight(); currentRow < 29; currentRow++)
+            {
+                newText[currentCol] = newText[currentCol] + String.valueOf(this.image.getPixel(currentRow, currentCol));
+            }
+            this.text += newText[currentCol] + " ";
+        }
+
+        if (text != null)
+            return true;
+
+        return false;
     }
 
     public void displayTextToConsole() {
-        System.out.println(text);       
+        System.out.println(text);
     }
 
     public void displayImageToConsole() {
-
-        
+        this.image.displayToConsole();
     }
 
-    private void cleanImage(){
-        boolean foundPixel = false; // So we only do the move code ONCE
+    public void cleanImage(){
+        //set a new index to bottom left
+        //iterate from bottom up until finding the bottom left
+        //move the iterated index to the bottom corner
+        //keep track of length and the bottom left index of image
+        //use length to iterate through the image and begin loop on left side 
+        //of the image
+        BarcodeImage newImg = new BarcodeImage();
+        BarcodeImage savedImg = this.image;
+        newImg.setPixel(image.MAX_HEIGHT - 1, 0, true);
+        
+        for (int Y = BarcodeImage.MAX_HEIGHT - 1; Y > 0; Y--) {
+            for (int X = 0; X < BarcodeImage.MAX_WIDTH - 1; X++) {
+                if (image.getPixel(Y, X)) {
+                    int targetY = 29;
+                    int targetX = 0;
+                    // Y 28 X 1
+                    for (int newY = Y; newY >= 0; newY--) {
+                        for (int newX = X; newX < BarcodeImage.MAX_WIDTH; newX++) {
+                            //System.out.print("XY: " + newX + " " + newY);
+                            newImg.setPixel(targetY, targetX, savedImg.getPixel(newY, newX));
+                            targetX++;
+                        }
+                        targetX = 0;
+                        targetY--;
+                    }
 
-        for (int Y = 0; Y < MAX_HEIGHT; Y++) { // Gets Rows
-            for (int X = 0; X < MAX_WIDTH; X++) { // Gets our Cols
-                if (!foundPixel && this.image.getPixel(Y, X)) {
-                    BarcodeImage newImage = new BarcodeImage(); // Copy values here
-                    int newXOrigin = X; // Make it easier to think of vars
-                    int newYOrigin = Y;
-                    System.out.println(newXOrigin)
-                    System.out.println(newYOrigin)
-                    // for () {
-                    //     for () {
-                            
-                    //     }
-                    // }
-                    
-
-                    foundPixel = true;
+                    Y = 0;
+                    X = BarcodeImage.MAX_WIDTH;
                 }
             }
+                
         }
+        // int yTracker = 29;
+        // int xTracker = 0;
+        // Iterates through the strData arr in reverse.
+        // for (int oldY = BarcodeImage.MAX_HEIGHT - 1; oldY >= 0; oldY--) { 
+        //     // Iterates through the individual strings arrs
+        //     for (int oldX = 0; oldX < strData[oldY].length() - 1; oldX++) { 
+                                                                            
+        //         if (strData[oldY].charAt(oldX) == '*') {
+        //             newImg.setPixel(yTracker, xTracker, xTracker);
+        //         }
+        //         xTracker++;
+        //     }
+        //     xTracker = 0;
+        //     yTracker--;
+        // }
+
+        this.image = newImg;
     }
 }
 
@@ -343,12 +523,12 @@ interface BarcodeIO {
      * 
      *  @return
      */
-     
+
     public boolean translateImageToText();
 
     // prints out the text string to the console
     public void displayTextToConsole();
-    
+
     // Prints out the image to the console. 
     public void displayImageToConsole();
 }
