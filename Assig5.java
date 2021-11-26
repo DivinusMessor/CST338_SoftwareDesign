@@ -12,12 +12,83 @@
 import java.util.Scanner;
 import java.util.Random;
 import javax.swing.*;
-import javax.awt.*;
+import java.awt.*;
+import java.io.File;
 
 public class Assig5 {
 
-    public static void main(String[] args) {
+    // static for the 57 icons and their corresponding labels
+    // normally we would not have a separate label for each card, but
+    // if we want to display all at once using labels, we need to.
+   
+    static final int NUM_CARD_IMAGES = 57; // 52 + 4 jokers + 1 back-of-card image
+    static Icon[] icon = new ImageIcon[NUM_CARD_IMAGES];
+      
+    static void loadCardIcons() {
+        // build the file names ("AC.gif", "2C.gif", "3C.gif", "TC.gif", etc.)
+        File folder = new File("./Cards");
+        File[] listFiles = folder.listFiles();
 
+        // for (int i = 0; i < listFiles.length; i++) {
+        //     JLabel cardName = new JLabel(); // 2C.gif
+        //     ImageIcon temp = new ImageIcon(listFiles[i].getName());
+        // }
+
+        icon[0] = new ImageIcon("AC.gif");
+
+        // for (File file : listFiles) {
+        //     // System.out.println("-" + file.getName());
+            
+        // }
+
+        // in a SHORT loop.  For each file name, read it in and use it to
+        // instantiate each of the 57 Icons in the icon[] array.
+    }
+   
+   // turns 0 - 13 into "A", "2", "3", ... "Q", "K", "X"
+   static String turnIntIntoCardValue(int k) {
+      // an idea for a helper method (do it differently if you wish)
+      return "This";
+   }
+   
+   // turns 0 - 3 into "C", "D", "H", "S"
+   static String turnIntIntoCardSuit(int j) {
+      // an idea for another helper method (do it differently if you wish)
+      return "This";
+   }
+   
+   // a simple main to throw all the JLabels out there for the world to see
+    public static void main(String[] args) {
+        int k;
+      
+        // prepare the image icon array
+        loadCardIcons();
+        JLabel temp = new JLabel("AC");
+        temp.setIcon(icon[0]);
+      
+        // establish main frame in which program will run
+        JFrame frmMyWindow = new JFrame("Card Room");
+        frmMyWindow.setSize(1150, 650);
+        frmMyWindow.setLocationRelativeTo(null);
+        frmMyWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      
+        // set up layout which will control placement of buttons, etc.
+        FlowLayout layout = new FlowLayout(FlowLayout.CENTER, 5, 20);   
+        frmMyWindow.setLayout(layout);
+      
+        // prepare the image label array
+        JLabel[] labels = new JLabel[NUM_CARD_IMAGES];
+        for (k = 0; k < NUM_CARD_IMAGES; k++)
+            labels[k] = new JLabel(icon[k]);
+      
+        // place your 3 controls into frame
+        for (k = 0; k < NUM_CARD_IMAGES; k++)
+            frmMyWindow.add(labels[k]);
+
+        // show everything to the user
+        frmMyWindow.setVisible(true);
+
+        //public static void main(String[] args) {
         // Phase 1:
         // Card first = new Card();
         // Card second = new Card('7', Card.Suit.CLUBS);
@@ -76,91 +147,92 @@ public class Assig5 {
 
         // Phase 3:
         // Creates a deck with two packs
-        Deck tempDeck = new Deck(2);
-        int initialDeckSize = tempDeck.getTopCard();
-        // Deals all of the cards in the loop until deck is empty
-        for (int i = 0; i <= initialDeckSize; i++) {
-            System.out.print(tempDeck.dealCard() + " / ");
-        }
+        // Deck tempDeck = new Deck(2);
+        // int initialDeckSize = tempDeck.getTopCard();
+        // // Deals all of the cards in the loop until deck is empty
+        // for (int i = 0; i <= initialDeckSize; i++) {
+        //     System.out.print(tempDeck.dealCard() + " / ");
+        // }
 
-        System.out.println();
-        System.out.println();
-        tempDeck.init(2); // Reset deck by initializing back same 2 packs
-        tempDeck.shuffle(); // Shuffles the deck
-        // Re-deals all of the cards until the deck is empty
-        for (int i = 0; i <= initialDeckSize; i++) {
-            System.out.print(tempDeck.dealCard() + " / ");
-        }
+        // System.out.println();
+        // System.out.println();
+        // tempDeck.init(2); // Reset deck by initializing back same 2 packs
+        // tempDeck.shuffle(); // Shuffles the deck
+        // // Re-deals all of the cards until the deck is empty
+        // for (int i = 0; i <= initialDeckSize; i++) {
+        //     System.out.print(tempDeck.dealCard() + " / ");
+        // }
 
-        System.out.println();
-        System.out.println();
-        // Repeats process above again using only 1 deck
-        Deck tempDeck2 = new Deck();
-        int initialDeckSize2 = tempDeck2.getTopCard();
-        for (int i = 0; i <= initialDeckSize2; i++) {
-            System.out.print(tempDeck2.dealCard() + " / ");
-        }
-        System.out.println();
-        System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // // Repeats process above again using only 1 deck
+        // Deck tempDeck2 = new Deck();
+        // int initialDeckSize2 = tempDeck2.getTopCard();
+        // for (int i = 0; i <= initialDeckSize2; i++) {
+        //     System.out.print(tempDeck2.dealCard() + " / ");
+        // }
+        // System.out.println();
+        // System.out.println();
 
-        tempDeck2.init(1);
-        tempDeck2.shuffle();
-        for (int i = 0; i <= initialDeckSize2; i++) {
-            System.out.print(tempDeck2.dealCard() + " / ");
-        }
-        System.out.println();
-        System.out.println();
-        // PHASE 4:
-        Scanner keyboard = new Scanner(System.in);
-        int numHands;
-        System.out.print("How many hands? (1-10 please): ");
-        numHands = keyboard.nextInt();
-        // Checks if user input is valid (1-10)
-        if (numHands >= 1 && numHands <= 10) {
-            // If valid, creates new deck and deals deck into hand
-            Deck tempDeck3 = new Deck();
-            Hand[] playerHand = new Hand[numHands];
-            // Deals all of the cards until the hand is empty
-            for (int i = 0; i < playerHand.length; i++) {
-                playerHand[i] = new Hand();
-            }
+        // tempDeck2.init(1);
+        // tempDeck2.shuffle();
+        // for (int i = 0; i <= initialDeckSize2; i++) {
+        //     System.out.print(tempDeck2.dealCard() + " / ");
+        // }
+        // System.out.println();
+        // System.out.println();
+        // // PHASE 4:
+        // Scanner keyboard = new Scanner(System.in);
+        // int numHands;
+        // System.out.print("How many hands? (1-10 please): ");
+        // numHands = keyboard.nextInt();
+        // // Checks if user input is valid (1-10)
+        // if (numHands >= 1 && numHands <= 10) {
+        //     // If valid, creates new deck and deals deck into hand
+        //     Deck tempDeck3 = new Deck();
+        //     Hand[] playerHand = new Hand[numHands];
+        //     // Deals all of the cards until the hand is empty
+        //     for (int i = 0; i < playerHand.length; i++) {
+        //         playerHand[i] = new Hand();
+        //     }
 
-            int playerCount = 0;
-            while (tempDeck3.getTopCard() >= 0) {
+        //     int playerCount = 0;
+        //     while (tempDeck3.getTopCard() >= 0) {
 
-                playerHand[playerCount].takeCard(tempDeck3.dealCard());
-                playerCount++;
-                if (playerCount == numHands) {
-                    playerCount = 0;
-                }
-            }
-            // Prints out the unshuffled dealt deck to user
-            System.out.println("Here are our hands," + " from unshuffled deck:");
-            for (int i = 0; i < playerHand.length; i++) {
-                System.out.println(playerHand[i].toString());
-                System.out.println();
-                playerHand[i].resetHand();
-            }
-            tempDeck3.init(1); // Resets back to original deck
-            tempDeck3.shuffle(); // Shuffles the deck
-            while (tempDeck3.getTopCard() >= 0) {
-                playerHand[playerCount].takeCard(tempDeck3.dealCard());
-                playerCount++;
-                if (playerCount == numHands) {
-                    playerCount = 0;
-                }
-            }
-            System.out.println();
-            System.out.println();
-            // Prints out shuffled deck
-            System.out.println("Here are our hands, from SHUFFLED deck:");
-            for (int i = 0; i < playerHand.length; i++) {
-                System.out.println(playerHand[i].toString());
-                System.out.println();
-            }
-            System.out.println("Press any key to continue . . . ");
-        }
-    }
+        //         playerHand[playerCount].takeCard(tempDeck3.dealCard());
+        //         playerCount++;
+        //         if (playerCount == numHands) {
+        //             playerCount = 0;
+        //         }
+        //     }
+        //     // Prints out the unshuffled dealt deck to user
+        //     System.out.println("Here are our hands," + " from unshuffled deck:");
+        //     for (int i = 0; i < playerHand.length; i++) {
+        //         System.out.println(playerHand[i].toString());
+        //         System.out.println();
+        //         playerHand[i].resetHand();
+        //     }
+        //     tempDeck3.init(1); // Resets back to original deck
+        //     tempDeck3.shuffle(); // Shuffles the deck
+        //     while (tempDeck3.getTopCard() >= 0) {
+        //         playerHand[playerCount].takeCard(tempDeck3.dealCard());
+        //         playerCount++;
+        //         if (playerCount == numHands) {
+        //             playerCount = 0;
+        //         }
+        //     }
+        //     System.out.println();
+        //     System.out.println();
+        //     // Prints out shuffled deck
+        //     System.out.println("Here are our hands, from SHUFFLED deck:");
+        //     for (int i = 0; i < playerHand.length; i++) {
+        //         System.out.println(playerHand[i].toString());
+        //         System.out.println();
+        //     }
+        //     System.out.println("Press any key to continue . . . ");
+        // }
+   // }}
+   }
 }
 
 /*
@@ -385,6 +457,7 @@ class Deck {
 
     // Default Constructor. Assumes 1 Pack.
     public Deck() {
+
         allocateMasterPack();
         this.cards = new Card[52];
         this.topCard = 51;
