@@ -6,6 +6,13 @@
    "configurations": [
       {
          "type": "java",
+         "name": "Launch multi_example",
+         "request": "launch",
+         "mainClass": "multi_example",
+         "projectName": "CST338_SoftwareDesign_15adb1b3"
+      },
+      {
+         "type": "java",
          "name": "Launch Assig5",
          "request": "launch",
          "mainClass": "Assig5",
