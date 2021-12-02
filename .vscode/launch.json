@@ -1,0 +1,70 @@
+{
+   // Use IntelliSense to learn about possible attributes.
+   // Hover to view descriptions of existing attributes.
+   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+   "version": "0.2.0",
+   "configurations": [
+      {
+         "type": "java",
+         "name": "Launch Assig5",
+         "request": "launch",
+         "mainClass": "Assig5",
+         "projectName": "CST300_SoftwareDesign_201aea80"
+      },
+      {
+         "type": "java",
+         "name": "Launch Current File",
+         "request": "launch",
+         "mainClass": "${file}"
+      },
+      {
+         "type": "java",
+         "name": "Launch Assig2",
+         "request": "launch",
+         "mainClass": "Assig2",
+         "projectName": "CST300_SoftwareDesign_201aea80"
+      },
+      {
+         "type": "java",
+         "name": "Launch Assig3",
+         "request": "launch",
+         "mainClass": "Assig3",
+         "projectName": "CST300_SoftwareDesign_201aea80"
+      },
+      {
+         "type": "java",
+         "name": "Launch Assig4",
+         "request": "launch",
+         "mainClass": "Assig4",
+         "projectName": "CST300_SoftwareDesign_201aea80"
+      },
+      {
+         "type": "java",
+         "name": "Launch DateFirstTryDemo",
+         "request": "launch",
+         "mainClass": "DateFirstTryDemo",
+         "projectName": "CST300_SoftwareDesign_201aea80"
+      },
+      {
+         "type": "java",
+         "name": "Launch helloWorld",
+         "request": "launch",
+         "mainClass": "helloWorld",
+         "projectName": "CST300_SoftwareDesign_201aea80"
+      },
+      {
+         "type": "java",
+         "name": "Launch chpt17",
+         "request": "launch",
+         "mainClass": "notes.chpt17.chpt17",
+         "projectName": "CST300_SoftwareDesign_201aea80"
+      },
+      {
+         "type": "java",
+         "name": "Launch stringManipulation",
+         "request": "launch",
+         "mainClass": "stringManipulation",
+         "projectName": "CST300_SoftwareDesign_201aea80"
+      }
+   ]
+}
