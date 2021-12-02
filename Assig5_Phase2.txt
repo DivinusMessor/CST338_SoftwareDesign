@@ -39,12 +39,12 @@ public class Assig5_Phase2 {
     /**
      * randomCardGenerator: Uses two arrays of values that represent
      * playing cards to generate a random card.
-     * 
+     *
      * @return a randomly generated fresh copy of a card
      */
     static Card randomCardGenerator() {
         // Begin w two arrays for value generation
-        char[] cardVals = new char[] { 'A', '2', '3', '4', '5', '6', 
+        char[] cardVals = new char[] { 'A', '2', '3', '4', '5', '6',
         '7', '8', '9', 'T', 'J', 'Q', 'K', 'X' };
         Card.Suit[] suitVals = Card.Suit.values();
         // Then generate random values from the arrays
@@ -114,7 +114,7 @@ class CardTable extends JFrame {
 
     /*
      * CardTable: The constructor filters input, adds any panels to the
-     * JFrame, and establishes layouts according to the general 
+     * JFrame, and establishes layouts according to the general
      * description below.
      */
     CardTable(String title, int numCardsPerHand, int numPlayers) {
@@ -124,7 +124,7 @@ class CardTable extends JFrame {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-        if (numPlayers <= MAX_PLAYERS || numCardsPerHand 
+        if (numPlayers <= MAX_PLAYERS || numCardsPerHand
         <= MAX_CARDS_PER_HAND) {
             // Computer hand label & border
             pnlComputerHand = new JPanel();
@@ -142,7 +142,7 @@ class CardTable extends JFrame {
             // Human hand label & border
             pnlHumanHand = new JPanel();
             Border humanOld = new LineBorder(Color.BLACK, 1, true);
-            Border humanNew = BorderFactory.createTitledBorder(humanOld, 
+            Border humanNew = BorderFactory.createTitledBorder(humanOld,
             "Your Hand");
             pnlHumanHand.setBorder(humanNew);
 
@@ -174,7 +174,7 @@ class GUICard {
     static boolean iconsLoaded = false;
 
     /**
-     * loadCardIcons: Generates all the ImageIcons for use in the rest 
+     * loadCardIcons: Generates all the ImageIcons for use in the rest
      * of the
      * program.
      * Needs to be called in main or else the cards won't have icons.
@@ -183,7 +183,7 @@ class GUICard {
         if (!iconsLoaded) {
             int cardTracker = 0;
             // Each value, append the suits onto them & create an icon
-            char[] s_list = new char[] { 'A', '2', '3', '4', '5', '6', 
+            char[] s_list = new char[] { 'A', '2', '3', '4', '5', '6',
             '7', '8', '9', 'T', 'J', 'Q', 'K', 'X' };
             for (char cardVal : s_list) {
                 iconCards[cardTracker][0] = new ImageIcon("./Cards/" + cardVal + "C.gif"); // Clubs
@@ -210,12 +210,12 @@ class GUICard {
 }
 
 /**
- * Card: A public class that creates a card with a value and suit and 
+ * Card: A public class that creates a card with a value and suit and
  * checks its
  * validity in errorFlag.
  */
 class Card {
-    public static char[] valuRanks = new char[] { 'A', '2', '3', '4', 
+    public static char[] valuRanks = new char[] { 'A', '2', '3', '4',
     '5', '6', '7', '8', '9', 'T', 'J', 'K', 'Q', 'X' };
     public enum Suit {
         CLUBS, DIAMONDS, HEARTS, SPADES
@@ -258,10 +258,10 @@ class Card {
     }
 
     /**
-     * set: Mutator that accepts legal values. When bad values are 
+     * set: Mutator that accepts legal values. When bad values are
      * passed, errorFlag
-     * is set to true and other values are left alone. If good values 
-     * are passed,they're stored & errorFlag is set to false. Uses 
+     * is set to true and other values are left alone. If good values
+     * are passed,they're stored & errorFlag is set to false. Uses
      * isValid to test.
      *
      * @param value takes the potential value of the card
@@ -296,15 +296,15 @@ class Card {
     }
 
     /**
-     * equals: Compares all the fields (members) and if they're 
+     * equals: Compares all the fields (members) and if they're
      * identical.
      *
      * @param card The card that you want to check against.
      * @return True or false if two cards have the same data.
      */
     public boolean equals(Card card) {
-        if (value == card.getValue() 
-        && errorFlag == card.getErrorFlag() 
+        if (value == card.getValue()
+        && errorFlag == card.getErrorFlag()
         && suit == card.getSuit()) {
             return true;
         }
@@ -320,9 +320,9 @@ class Card {
      */
     private boolean isValid(char value, Suit suit) {
         if (suit == Suit.SPADES || suit == Suit.HEARTS || suit == Suit.DIAMONDS || suit == Suit.CLUBS) {
-            if (value == 'A' || value == 'T' || value == 'J' 
+            if (value == 'A' || value == 'T' || value == 'J'
             || value == 'Q' || value == 'K' || value == '2'
-            || value == '3' || value == '4' || value == '5' 
+            || value == '3' || value == '4' || value == '5'
             || value == '6' || value == '7' || value == '8'
             || value == '9' || value == 'X') {
                 return true;
@@ -393,7 +393,7 @@ class Card {
     /**
      * arraySort: Uses a nested for loop to perform bubble sort
      * on the input array.
-     * 
+     *
      * @param unsortedCards the incoming array to bubble sort
      * @param arraySize     the size of the other array
      */
@@ -404,7 +404,7 @@ class Card {
             for (int inner = 1; inner < (arraySize - outer); inner++) {
                 // Set a temporary card as "comparison" card
                 tempCard = unsortedCards[inner - 1];
-                // Compare card 
+                // Compare card
                 if (tempCard.getValueAsInt() > unsortedCards[inner].getValueAsInt()) {
                     unsortedCards[inner - 1] = unsortedCards[inner];
                     unsortedCards[inner] = tempCard;
@@ -523,7 +523,7 @@ class Hand {
 }
 
 /*
- * Deck: Class that represents source of the cards for dealing and the 
+ * Deck: Class that represents source of the cards for dealing and the
  * place from which players can receive new cards
  */
 class Deck {
@@ -559,7 +559,7 @@ class Deck {
     }
 
     /**
-     * init: Re-populate cards[] with the standard 52 × numPacks cards. 
+     * init: Re-populate cards[] with the standard 52 × numPacks cards.
      * Assumes you only call init w the same number of initial packs.
      *
      * @param: numPacks is the amount of packs to add
@@ -596,7 +596,7 @@ class Deck {
      * dealCard: Returns and removes card in top occupied position of
      * cards[] or just "the topmost card".
      *
-     * @return: the topmost Card if there, otherwise a card w/ 
+     * @return: the topmost Card if there, otherwise a card w/
      * errorFlag = true.
      */
     Card dealCard() {
@@ -617,7 +617,7 @@ class Deck {
     }
 
     /**
-     * inspectCard: Accessor for an individual card. Returns a card with 
+     * inspectCard: Accessor for an individual card. Returns a card with
      * errorFlag = true if k is bad.
      *
      * @param k the index of the specific card in the deck
@@ -643,13 +643,13 @@ class Deck {
             masterPack = new Card[DECK_SIZE];
             // Declare two suit/value arrays for generation.
             Card.Suit[] suitArray = Card.Suit.values();
-            char[] charArray = new char[] { 'A', '2', '3', '4', '5', 
+            char[] charArray = new char[] { 'A', '2', '3', '4', '5',
             '6', '7', '8', '9', 'T', 'J', 'Q', 'K' };
             int masterIndex = 0;
             // double for loop for index to generate all needed cards
             for (int i = 0; i < suitArray.length; i++) {
                 for (int j = 0; j < charArray.length; j++) {
-                    masterPack[masterIndex] = new Card(charArray[j], 
+                    masterPack[masterIndex] = new Card(charArray[j],
                     suitArray[i]);
                     masterIndex++;
                 }
@@ -688,7 +688,7 @@ class Deck {
      * the deck first.
      *
      * @param card specific card to search for
-     * @return: True if done, False if card wasn't found in the 
+     * @return: True if done, False if card wasn't found in the
      * first place
      */
     public boolean removeCard(Card card) {

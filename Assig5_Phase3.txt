@@ -17,14 +17,14 @@ public class Assig5_Phase3 {
 
     /**
      * updateComputerDisplay: Clean & Clears the computer's JPanel & then draws
-     * on it the cards and the win count if applicable.  
-     * 
+     * on it the cards and the win count if applicable.
+     *
      * @param computerHand the hand of the computer's to display
      * @param computerPanel the display JPanel of the computer's side
      */
     static void updateComputerDisplay(Hand computerHand, JPanel computerPanel) {
         // For all of our displays we redraw the canvas
-        computerPanel.removeAll(); 
+        computerPanel.removeAll();
         computerPanel.revalidate();
         computerPanel.repaint();
 
@@ -35,7 +35,7 @@ public class Assig5_Phase3 {
 
         // When the computer has won we can display that in the box
         if (computerWinnings > 0) {
-            computerPanel.add(new JLabel("Computer has won " 
+            computerPanel.add(new JLabel("Computer has won "
                 + computerWinnings + " times!"));
         }
     }
@@ -43,20 +43,20 @@ public class Assig5_Phase3 {
     /**
      * updatePlayerDisplay: Clean & Clears the display of the player's
      * card's. Displays the winnings count if applicable.
-     * 
+     *
      * @param playerHand the hand of the player to display
      * @param playerPanel the display JPanel of the player's side
      */
     static void updatePlayerDisplay(Hand playerHand, JPanel playerPanel) {
         // For all of our displays we redraw the canvas
-        playerPanel.removeAll(); 
+        playerPanel.removeAll();
         playerPanel.revalidate();
         playerPanel.repaint();
 
         // Then loop through the hand & build the buttons to display
         for (int i = 0; i < playerHand.getNumCards(); i++) {
             JButton temp = new JButton(GUICard.getIcon(playerHand.inspectCard(i)));
-            // Buttons store the index of the clicked card & sends it to 
+            // Buttons store the index of the clicked card & sends it to
             // the ActionListener to store for later use.
             temp.setActionCommand("" + i);
             temp.addActionListener(new CardClicked());
@@ -65,7 +65,7 @@ public class Assig5_Phase3 {
 
         // Display players win count if they have won some rounds already
         if (playerWinnings > 0) {
-            playerPanel.add(new JLabel("Player has won " 
+            playerPanel.add(new JLabel("Player has won "
                 + playerWinnings + " times!", JLabel.CENTER));
         }
     }
@@ -74,7 +74,7 @@ public class Assig5_Phase3 {
      * updatePlayArea: Uses playedCards to determine which of the two player's
      * cards have been played and then displays them in the center of the
      * play area.
-     * 
+     *
      * @param playPanel the JPanel of the center play area
      */
     static void updatePlayArea(JPanel playPanel) {
@@ -82,14 +82,14 @@ public class Assig5_Phase3 {
         playPanel.removeAll();
         playPanel.revalidate();
         playPanel.repaint();
-        
+
         // Ifs here check if a card is null before trying to draw it
         if (playedCards[0] != null) {
             JLabel temp = new JLabel("Computer", JLabel.CENTER);
             temp.setIcon(GUICard.getIcon(playedCards[0]));
             playPanel.add(temp);
         }
-        
+
         if (playedCards[1] != null) {
             JLabel temp = new JLabel("You", JLabel.CENTER);
             temp.setIcon(GUICard.getIcon(playedCards[1]));
@@ -100,7 +100,7 @@ public class Assig5_Phase3 {
     static int NUM_CARDS_PER_HAND = 7;
     static int NUM_PLAYERS = 2;
     // Stores the Index of the Clicked Card
-    static int indexOfClick = 8; 
+    static int indexOfClick = 8;
     // Stores the players/computers played cards
     static Card[] playedCards = new Card[2];
     // Stores the winnings of the player/computer
@@ -129,9 +129,9 @@ public class Assig5_Phase3 {
         myCardTable.setLocationRelativeTo(null);
         myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GUICard.loadCardIcons(); // Generate all the card icons
-        
+
         boolean gameOver = false; // Game loop condition
-        
+
         // Here is our GAME SETUP conditions
         // We start by PLAYING one card @ random from the COMP
         playedCards[COMP] = SuitMatchGame.playCard(COMP, 0);
@@ -184,7 +184,7 @@ public class Assig5_Phase3 {
             }
         }
 
-        // Here is the code for the FINAL state of the game 
+        // Here is the code for the FINAL state of the game
         JLabel finalStatus = new JLabel("GAME OVER", JLabel.CENTER);
         myCardTable.pnlPlayArea.add(finalStatus);
 
@@ -286,13 +286,13 @@ class GUICard {
             // For each value, append the suits onto them & create an icon
             char[] s_list = new char[] { 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'X' };
             for (char cardVal : s_list) {
-                iconCards[cardTracker][0] = new ImageIcon("./Cards/" 
+                iconCards[cardTracker][0] = new ImageIcon("./Cards/"
                     + cardVal + "C.gif"); // Clubs
-                iconCards[cardTracker][1] = new ImageIcon("./Cards/" 
+                iconCards[cardTracker][1] = new ImageIcon("./Cards/"
                     + cardVal + "D.gif"); // Diamonds
-                iconCards[cardTracker][2] = new ImageIcon("./Cards/" 
+                iconCards[cardTracker][2] = new ImageIcon("./Cards/"
                     + cardVal + "H.gif"); // Hearts
-                iconCards[cardTracker][3] = new ImageIcon("./Cards/" 
+                iconCards[cardTracker][3] = new ImageIcon("./Cards/"
                     + cardVal + "S.gif"); // Spades
                 cardTracker++;
             }
@@ -317,7 +317,7 @@ class GUICard {
  * validity in errorFlag.
  */
 class Card {
-    public static char[] valuRanks = new char[] { 'A', '2', '3', '4', '5', '6', 
+    public static char[] valuRanks = new char[] { 'A', '2', '3', '4', '5', '6',
         '7', '8', '9', 'T', 'J', 'K', 'Q', 'X' };
     public enum Suit {
         CLUBS, DIAMONDS, HEARTS, SPADES
@@ -436,7 +436,7 @@ class Card {
     /**
      * getValueAsInt: Generates an int value representation of a card's value.
      * Goes from 0 for Ace to 13 for Joker.
-     * 
+     *
      * @return the value in int of the value of the card
      */
     public int getValueAsInt() {
@@ -477,7 +477,7 @@ class Card {
     /**
      * getSuitAsInt: Generates an int value representation of a card's suit.
      * 0 for CLUBS, 1 for DIAMONDS, 2 for HEARTS, & 3 for SPADES.
-     * 
+     *
      * @return the value in int of the suit of the card
      */
     public int getSuitAsInt() {
@@ -499,7 +499,7 @@ class Card {
      * arraySort: Takes an unsorted array of cards w/ its size & uses
      * a nested for loop to bubble sort the internal cards using the
      * value of the cards as the sort criteria.
-     * 
+     *
      * @param unsortedCards the unsorted array of cards
      * @param arraySize the size of that unsorted array
      */
@@ -510,7 +510,7 @@ class Card {
             for (int inner = 1; inner < (arraySize - outer); inner++) {
                 // Set a temporary card as the "comparison" card
                 tempCard = unsortedCards[inner - 1];
-                // If our compare card IS greater than our 
+                // If our compare card IS greater than our
                 // current card swap them.
                 if (tempCard.getValueAsInt() > unsortedCards[inner].getValueAsInt()) {
                     unsortedCards[inner - 1] = unsortedCards[inner];
@@ -546,7 +546,7 @@ class Hand {
      * (your hand) if there's space.
      *
      * @param card The input card object to be taken
-     * @return returns true if a card was taken from the deck & false if the 
+     * @return returns true if a card was taken from the deck & false if the
      * hand is full
      */
     public boolean takeCard(Card card) {
@@ -555,12 +555,12 @@ class Hand {
             numCards++;
             return true;
         }
-        
+
         return false; // Our hand is full
     }
 
     /**
-     * playCard: returns and removes the card in Nth position of the internal 
+     * playCard: returns and removes the card in Nth position of the internal
      * card array, similar to playing a certain card.
      *
      * @param cardIndex the index of the card to be played
@@ -603,7 +603,7 @@ class Hand {
     }
 
     /**
-     * inspectCard: Accessor for an individual card. Returns a card with 
+     * inspectCard: Accessor for an individual card. Returns a card with
      * errorFlag = true if k is bad.
      *
      * @param k takes an integer and checks the card in the index of integer k
@@ -621,7 +621,7 @@ class Hand {
     void sortHands() {
         sort();
     }
-    
+
     //Sorts the array of cards
     public void sort() {
         Card.arraySort(myCards, numCards);
@@ -744,8 +744,8 @@ class Deck {
     }
 
     /**
-     * allocateMasterPack: Constructs a standard playing card deck to be copied 
-     * from if needed. Even if many Deck objects are constructed, this will not 
+     * allocateMasterPack: Constructs a standard playing card deck to be copied
+     * from if needed. Even if many Deck objects are constructed, this will not
      * allow itself to be executed more than once.
      */
     private static void allocateMasterPack() {
@@ -754,7 +754,7 @@ class Deck {
             masterPack = new Card[DECK_SIZE];
             // Declare two suit/value arrays for generation.
             Card.Suit[] suitArray = Card.Suit.values();
-            char[] charArray = new char[] { 'A', '2', '3', '4', '5', '6', '7', 
+            char[] charArray = new char[] { 'A', '2', '3', '4', '5', '6', '7',
                 '8', '9', 'T', 'J', 'Q', 'K' };
             int masterIndex = 0;
             // Double for loop for index to generate all needed cards
@@ -768,7 +768,7 @@ class Deck {
     }
 
     /**
-     * addCard: Make sure that there are not too many instances of the card in 
+     * addCard: Make sure that there are not too many instances of the card in
      * the deck if you add it, then put card at the top of the deck.
      *
      * @param card specific card instance to search for
@@ -798,7 +798,7 @@ class Deck {
      * the deck first.
      *
      * @param card specific card to search for
-     * @return True if operation was done, False if card wasn't found in the 
+     * @return True if operation was done, False if card wasn't found in the
      * first place
      */
     public boolean removeCard(Card card) {
