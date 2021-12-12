@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SimpleAndroidApp</string>
+    <string name="csumb_logo">csumb_logo</string>
+    <string name="VidButton">Video</string>
+</resources>
