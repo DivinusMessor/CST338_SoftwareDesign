@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CSUMBApp</string>
+    <string name="VidButton">Video</string>
+    <string name="CSUMB_logo">csumb_logo</string>
 </resources>
