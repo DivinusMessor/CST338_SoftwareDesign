@@ -1,0 +1,5 @@
+com/example/csumbapp/BuildConfig.java
+ com.example.csumbapp.BuildConfig
+com/example/csumbapp/MainActivity.java
+ com.example.csumbapp.MainActivity
+ com.example.csumbapp.MainActivity$1
